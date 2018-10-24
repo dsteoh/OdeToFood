@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace OdeToFood
+namespace OdeToFood.Services
 {
     public interface IGreeter
     {
@@ -10,11 +10,12 @@ namespace OdeToFood
     public class Greeter : IGreeter
     {
         private IConfiguration _configuration;
-        //Will trigger dependencies injection
+        
         public Greeter(IConfiguration configuration)
         {
             _configuration = configuration;
         }
+
         public string GetMessageOfTheDay()
         {
             return _configuration["Greeting"];

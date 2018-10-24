@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
+using OdeToFood.Services;
 
 namespace OdeToFood
 {
@@ -17,6 +18,7 @@ namespace OdeToFood
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IGreeter, Greeter>();
+            services.AddScoped<IRestaurantData, InMemoryRestaurantData>();
             services.AddMvc();
         }
 
@@ -44,7 +46,7 @@ namespace OdeToFood
         {
             // /Home/Index
             routeBuilder.MapRoute("Default",
-                "{controller=home}/{action=index}");
+                "{controller=home}/{action=index}/{id?}");
         }
     }
 }
